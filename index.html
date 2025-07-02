@@ -127,9 +127,9 @@
         /* About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
         .about-text {
@@ -165,6 +165,46 @@
             color: var(--accent-purple);
             position: absolute;
             left: 0;
+        }
+
+        /* QR Code Section */
+        .qr-section {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .qr-section h3 {
+            color: var(--secondary-blue);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .qr-link {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .qr-link:hover {
+            background: var(--accent-red);
+            transform: translateY(-2px);
         }
 
         /* Experience Section */
@@ -288,6 +328,30 @@
             margin-bottom: 10px;
         }
 
+        /* Google Scholar Link */
+        .scholar-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .scholar-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--accent-purple) 100%);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .scholar-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
         /* Footer */
         footer {
             background: var(--primary-dark);
@@ -362,7 +426,7 @@
                     <span>Oakland, CA 94612</span>
                     <a href="tel:510-610-8741">510-610-8741</a>
                     <a href="mailto:antonio.maffia01@gmail.com">antonio.maffia01@gmail.com</a>
-                    <a href="#">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -397,6 +461,12 @@
                         <li>Boosted cell-based drug screening capacity 100× through a scalable gene-editing pipeline and automated phenotypic assays</li>
                         <li>Orchestrated cross-functional collaborations, streamlining project management and data-driven decision-making across R&D teams and pharma partners</li>
                     </ul>
+                </div>
+                <div class="qr-section">
+                    <h3>Download Resume</h3>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf" alt="QR Code for Resume" class="qr-code">
+                    <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 10px;">Scan to download PDF</p>
+                    <a href="Antonio_Maffia_Resume.pdf" class="qr-link" target="_blank">Download PDF Resume</a>
                 </div>
             </div>
         </div>
@@ -580,6 +650,10 @@
             <div class="publication-item">
                 <div class="publication-title">UBR5 interacts with the replication fork and protects DNA replication from DNA polymerase η toxicity</div>
                 <p>Cipolla, L., Bertoletti, F., <strong>Maffia, A</strong>., Liang, C. C., Lehmann, A. R., Cohn, M. A., Sabbioneda, S. (2019). <em>Nucleic acids research, 47 (21)</em>.</p>
+            </div>
+
+            <div class="scholar-link">
+                <a href="https://scholar.google.com/citations?user=UMwLySkAAAAJ&hl=en&oi=ao" class="scholar-button" target="_blank">View Complete Publication List on Google Scholar</a>
             </div>
         </div>
     </section>
