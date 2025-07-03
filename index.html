@@ -75,7 +75,7 @@
             opacity: 0.8;
         }
 
-        /* Carousel */
+      /* Carousel */
 .carousel-section {
     background: var(--white);
     padding: 60px 0;
@@ -116,17 +116,18 @@
     text-align: justify;
     z-index: 2;
     position: relative;
+    background: var(--white);
 }
 
 .carousel-slide blockquote::before {
-    content: """;
+    content: '\201C';
     position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 12rem;
+    top: 10px;
+    left: 15px;
+    font-size: 15rem;
     font-weight: 900;
     color: var(--accent-purple);
-    opacity: 0.15;
+    opacity: 0.2;
     line-height: 1;
     font-family: 'Georgia', 'Times New Roman', serif;
     z-index: 1;
@@ -135,14 +136,14 @@
 }
 
 .carousel-slide blockquote::after {
-    content: """;
+    content: '\201D';
     position: absolute;
-    bottom: -20px;
-    right: 20px;
-    font-size: 12rem;
+    bottom: -50px;
+    right: 15px;
+    font-size: 15rem;
     font-weight: 900;
     color: var(--accent-purple);
-    opacity: 0.15;
+    opacity: 0.2;
     line-height: 1;
     font-family: 'Georgia', 'Times New Roman', serif;
     z-index: 1;
@@ -220,15 +221,15 @@
     }
 
     .carousel-slide blockquote::before {
-        font-size: 8rem;
-        top: 10px;
-        left: 10px;
+        font-size: 10rem;
+        top: 5px;
+        left: 5px;
     }
 
     .carousel-slide blockquote::after {
-        font-size: 8rem;
-        bottom: -10px;
-        right: 10px;
+        font-size: 10rem;
+        bottom: -30px;
+        right: 5px;
     }
 
     .carousel-arrow {
