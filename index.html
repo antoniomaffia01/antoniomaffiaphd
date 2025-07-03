@@ -1391,7 +1391,55 @@ nav a:hover, nav a.active {
    </div>
   </footer>
   <script>
-   // Smooth scrolling for navigation links
+// Carousel functionality
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    const track = document.getElementById('carouselTrack');
+    const slideWidth = slides[0].offsetWidth;
+    
+    // Update slide position
+    track.style.transform = `translateX(-${index * slideWidth}px)`;
+    
+    // Update dots
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+    });
+    
+    currentSlideIndex = index;
+}
+
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    
+    // Loop around if necessary
+    if (currentSlideIndex >= totalSlides) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex < 0) {
+        currentSlideIndex = totalSlides - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+function currentSlide(index) {
+    showSlide(index - 1); // Convert to 0-based index
+}
+
+// Auto-slide functionality (optional)
+setInterval(() => {
+    changeSlide(1);
+}, 8000); // Change slide every 8 seconds
+
+// Initialize carousel
+document.addEventListener('DOMContentLoaded', () => {
+    showSlide(0);
+});
+
+// Smooth scrolling for navigation links
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -1423,6 +1471,6 @@ window.addEventListener('scroll', () => {
         }
     });
 });
-  </script>
+</script>
  </body>
 </html>
