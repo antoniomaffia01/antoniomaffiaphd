@@ -76,122 +76,175 @@
         }
 
         /* Carousel */
-        .carousel-section {
-            background: var(--white);
-            padding: 60px 0;
-            overflow: hidden;
-            position: relative;
-        }
+.carousel-section {
+    background: var(--white);
+    padding: 60px 0;
+    overflow: hidden;
+    position: relative;
+}
 
-        .carousel-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+.carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.6s ease-in-out;
-        }
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
 
-        .carousel-slide {
-            min-width: 100%;
-            padding: 0 40px;
-            text-align: center;
-        }
+.carousel-slide {
+    min-width: 100%;
+    padding: 0 40px;
+    text-align: center;
+    position: relative;
+}
 
-        .carousel-slide blockquote {
-            position: relative;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            color: var(--primary-dark);
-            font-weight: 400;
-            font-style: italic;
-            margin: 0;
-            padding: 40px 60px;
-        }
+.carousel-slide blockquote {
+    position: relative;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--primary-dark);
+    font-weight: 400;
+    font-style: normal;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    margin: 0;
+    padding: 80px 80px 60px 80px;
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+    text-align: justify;
+    z-index: 2;
+    position: relative;
+}
 
-        .carousel-slide blockquote::before {
-            content: """;
-            position: absolute;
-            top: -10px;
-            left: 0;
-            font-size: 6rem;
-            font-weight: 700;
-            color: var(--accent-purple);
-            opacity: 0.8;
-            line-height: 1;
-            font-family: 'Times New Roman', serif;
-        }
+.carousel-slide blockquote::before {
+    content: """;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 12rem;
+    font-weight: 900;
+    color: var(--accent-purple);
+    opacity: 0.15;
+    line-height: 1;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+}
 
-        .carousel-slide blockquote::after {
-            content: """;
-            position: absolute;
-            bottom: -40px;
-            right: 0;
-            font-size: 6rem;
-            font-weight: 700;
-            color: var(--accent-purple);
-            opacity: 0.8;
-            line-height: 1;
-            font-family: 'Times New Roman', serif;
-        }
+.carousel-slide blockquote::after {
+    content: """;
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    font-size: 12rem;
+    font-weight: 900;
+    color: var(--accent-purple);
+    opacity: 0.15;
+    line-height: 1;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+}
 
-        .carousel-nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
+.carousel-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
 
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--light-gray);
-            border: 2px solid var(--accent-purple);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    border: 2px solid var(--accent-purple);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .carousel-dot.active {
-            background: var(--accent-purple);
-            transform: scale(1.2);
-        }
+.carousel-dot.active {
+    background: var(--accent-purple);
+    transform: scale(1.2);
+}
 
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--white);
-            border: 2px solid var(--accent-purple);
-            color: var(--accent-purple);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            z-index: 10;
-        }
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--white);
+    border: 2px solid var(--accent-purple);
+    color: var(--accent-purple);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    z-index: 10;
+}
 
-        .carousel-arrow:hover {
-            background: var(--accent-purple);
-            color: var(--white);
-            transform: translateY(-50%) scale(1.1);
-        }
+.carousel-arrow:hover {
+    background: var(--accent-purple);
+    color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+}
 
-        .carousel-arrow.prev {
-            left: -25px;
-        }
+.carousel-arrow.prev {
+    left: -25px;
+}
 
-        .carousel-arrow.next {
-            right: -25px;
-        }
+.carousel-arrow.next {
+    right: -25px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-slide {
+        padding: 0 20px;
+    }
+
+    .carousel-slide blockquote {
+        font-size: 1rem;
+        padding: 60px 50px 50px 50px;
+        text-align: left;
+        word-spacing: 1px;
+    }
+
+    .carousel-slide blockquote::before {
+        font-size: 8rem;
+        top: 10px;
+        left: 10px;
+    }
+
+    .carousel-slide blockquote::after {
+        font-size: 8rem;
+        bottom: -10px;
+        right: 10px;
+    }
+
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .carousel-arrow.prev {
+        left: -20px;
+    }
+
+    .carousel-arrow.next {
+        right: -20px;
+    }
+}
 
         /* Navigation */
         nav {
