@@ -75,6 +75,63 @@
             opacity: 0.8;
         }
 
+            /* Header Summary with Quotation Marks */
+    .header-summary {
+        margin-top: 40px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .summary-quote {
+        position: relative;
+        font-size: 1.2rem;
+        line-height: 1.7;
+        color: var(--white);
+        font-weight: 300;
+        font-style: normal;
+        font-family: 'Georgia', 'Times New Roman', serif;
+        margin: 0;
+        padding: 50px 60px 40px 60px;
+        letter-spacing: 0.5px;
+        text-align: center;
+        z-index: 2;
+        position: relative;
+        opacity: 0.95;
+    }
+
+    .summary-quote::before {
+        content: '\201C';
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        font-size: 8rem;
+        font-weight: 900;
+        color: var(--white);
+        opacity: 0.3;
+        line-height: 1;
+        font-family: 'Georgia', 'Times New Roman', serif;
+        z-index: 1;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    .summary-quote::after {
+        content: '\201D';
+        position: absolute;
+        bottom: -20px;
+        right: 10px;
+        font-size: 8rem;
+        font-weight: 900;
+        color: var(--white);
+        opacity: 0.3;
+        line-height: 1;
+        font-family: 'Georgia', 'Times New Roman', serif;
+        z-index: 1;
+        user-select: none;
+        pointer-events: none;
+    }
+
       /* Carousel */
 .carousel-section {
     background: var(--white);
@@ -208,6 +265,35 @@
 }
 
 /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+        .header-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .contact-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Add this new mobile CSS here */
+        .summary-quote {
+            font-size: 1.1rem;
+            padding: 40px 40px 30px 40px;
+            text-align: left;
+        }
+
+        .summary-quote::before {
+            font-size: 6rem;
+            top: -5px;
+            left: 5px;
+        }
+
+        .summary-quote::after {
+            font-size: 6rem;
+            bottom: -15px;
+            right: 5px;
+        }
+
 @media (max-width: 768px) {
     .carousel-slide {
         padding: 0 20px;
@@ -616,21 +702,28 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <h1>Antonio Maffia, PhD</h1>
-                <p class="title">Senior Scientist</p>
-                <div class="contact-info">
-                    <span>Oakland, CA 94612</span>
-                    <a href="tel:510-610-8741">510-610-8741</a>
-                    <a href="mailto:antonio.maffia01@gmail.com">antonio.maffia01@gmail.com</a>
-                    <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">LinkedIn</a>
-                </div>
+   <!-- Header -->
+<header>
+    <div class="container">
+        <div class="header-content">
+            <h1>Antonio Maffia, PhD</h1>
+            <p class="title">Senior Scientist</p>
+            <div class="contact-info">
+                <span>Oakland, CA 94612</span>
+                <a href="tel:510-610-8741">510-610-8741</a>
+                <a href="mailto:antonio.maffia01@gmail.com">antonio.maffia01@gmail.com</a>
+                <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">LinkedIn</a>
+            </div>
+            
+            <!-- Professional Summary with Quotation Marks -->
+            <div class="header-summary">
+                <blockquote class="summary-quote">
+                    Innovative and results-driven Senior Scientist with 5+ years of expertise in molecular biology, functional genomics, and cell-based high-throughput screening. Demonstrated excellence in project leadership, experimental design, data analysis, and solving complex scalability challenges. Proven track record of driving breakthrough R&D innovations through strategic cross-functional collaborations with biotech and pharmaceutical partners.
+                </blockquote>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
     <!-- Carousel Banner -->
     <div class="carousel-section">
