@@ -75,6 +75,124 @@
             opacity: 0.8;
         }
 
+        /* Carousel */
+        .carousel-section {
+            background: var(--white);
+            padding: 60px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .carousel-slide blockquote {
+            position: relative;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: var(--primary-dark);
+            font-weight: 400;
+            font-style: italic;
+            margin: 0;
+            padding: 40px 60px;
+        }
+
+        .carousel-slide blockquote::before {
+            content: """;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            opacity: 0.8;
+            line-height: 1;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .carousel-slide blockquote::after {
+            content: """;
+            position: absolute;
+            bottom: -40px;
+            right: 0;
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            opacity: 0.8;
+            line-height: 1;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--light-gray);
+            border: 2px solid var(--accent-purple);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--accent-purple);
+            transform: scale(1.2);
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background: var(--accent-purple);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-arrow.prev {
+            left: -25px;
+        }
+
+        .carousel-arrow.next {
+            right: -25px;
+        }
+
         /* Navigation */
         nav {
             background: var(--white);
@@ -376,6 +494,34 @@
                 gap: 15px;
             }
 
+            .carousel-slide {
+                padding: 0 20px;
+            }
+
+            .carousel-slide blockquote {
+                font-size: 1.1rem;
+                padding: 30px 40px;
+            }
+
+            .carousel-slide blockquote::before,
+            .carousel-slide blockquote::after {
+                font-size: 4rem;
+            }
+
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-arrow.prev {
+                left: -20px;
+            }
+
+            .carousel-arrow.next {
+                right: -20px;
+            }
+
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -431,6 +577,38 @@
             </div>
         </div>
     </header>
+
+    <!-- Carousel Banner -->
+    <div class="carousel-section">
+        <div class="container">
+            <div class="carousel-container">
+                <button class="carousel-arrow prev" onclick="changeSlide(-1)">‹</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <blockquote>
+                            At Mammoth Biosciences, I developed innovative lentiviral-based pooled screening workflows that revolutionized protein engineering campaigns, delivering exponential increases in screening capabilities. Leading the entire screening pipeline, I orchestrated experimental design, timeline management, cross-functional team coordination, and resource allocation. I pioneered novel library cloning strategies and engineered sophisticated cell-based functional assays through precision genetic engineering. This experience strengthened my expertise in project management and leadership while advancing my knowledge of protein engineering for cell therapy applications.
+                        </blockquote>
+                    </div>
+                    <div class="carousel-slide">
+                        <blockquote>
+                            My research at UC Berkeley created a groundbreaking stem cell-based platform for cancer drug discovery through advanced genetic engineering of human stem cells. This innovative approach provides a more efficient and time-saving method for generating cancer models in vitro, unlocking new possibilities for functional genomics studies to identify novel druggable targets. Through this work, I developed deep expertise in genetic editing of complex cell lines and functional genomics, while collaborating with exceptional scientists who reinforced my commitment to cross-functional teamwork.
+                        </blockquote>
+                    </div>
+                    <div class="carousel-slide">
+                        <blockquote>
+                            During my graduate studies at the University of Pavia, I authored multiple publications in cancer biology, focusing on DNA repair and cellular replication—pathways critical to both cancer development and chemoresistance. My research contributed to identifying key therapeutic targets that can be leveraged for future cancer treatments. These foundational years established my expertise in cancer biology and biochemistry while igniting my passion for genetic engineering, ultimately shaping my career trajectory in biotechnology.
+                        </blockquote>
+                    </div>
+                </div>
+                <button class="carousel-arrow next" onclick="changeSlide(1)">›</button>
+                <div class="carousel-nav">
+                    <div class="carousel-dot active" onclick="currentSlide(1)"></div>
+                    <div class="carousel-dot" onclick="currentSlide(2)"></div>
+                    <div class="carousel-dot" onclick="currentSlide(3)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav>
@@ -658,45 +836,98 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Antonio Maffia, PhD. All rights reserved.</p>
-        </div>
-    </footer>
+   <!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Antonio Maffia, PhD. All rights reserved.</p>
+    </div>
+</footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+<script>
+    // Carousel functionality
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const track = document.getElementById('carouselTrack');
+
+    function showSlide(index) {
+        const slideWidth = slides[0].offsetWidth;
+        track.style.transform = `translateX(-${index * slideWidth}px)`;
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+
+    function changeSlide(direction) {
+        currentSlideIndex += direction;
+        if (currentSlideIndex >= slides.length) {
+            currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+            currentSlideIndex = slides.length - 1;
+        }
+        showSlide(currentSlideIndex);
+    }
+
+    function currentSlide(index) {
+        currentSlideIndex = index - 1;
+        showSlide(currentSlideIndex);
+    }
+
+    // Auto-play carousel
+    let autoPlay = setInterval(() => {
+        changeSlide(1);
+    }, 8000);
+
+    // Pause auto-play on hover
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoPlay);
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+        autoPlay = setInterval(() => {
+            changeSlide(1);
+        }, 8000);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        showSlide(currentSlideIndex);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         });
+    });
 
-        // Active navigation highlighting
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
+    // Active navigation highlighting
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
         });
-    </script>
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
 </body>
 </html>
