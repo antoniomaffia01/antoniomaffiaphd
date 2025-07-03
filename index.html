@@ -816,39 +816,123 @@ nav a:hover, nav a.active {
         margin-bottom: 10px;
     }
 }
+   /* Header QR layout */
+.header-with-qr {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.header-main {
+    flex: 1;
+    text-align: center;
+}
+.header-qr {
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.header-qr h3 {
+    color: var(--white);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.header-qr .qr-code {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+.header-qr .qr-link {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--secondary-blue);
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.header-qr .qr-link:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+}
+.header-qr .qr-description {
+    font-size: 0.8rem;
+    color: var(--white);
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+@media (max-width: 768px) {
+    .header-with-qr {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    .header-qr {
+        order: -1;
+        margin-bottom: 20px;
+    }
+    .header-qr .qr-code {
+        width: 100px;
+        height: 100px;
+    }
+}
   </style>
  </head>
  <body>
   <!-- Header -->
   <header>
-   <div class="container">
-    <div class="header-content">
-     <h1>
-      Antonio Maffia, PhD
-     </h1>
-     <p class="title">
-      Senior Scientist
+   <div class="header-with-qr">
+    <div class="header-main">
+     <div class="header-content">
+      <h1>
+       Antonio Maffia, PhD
+      </h1>
+      <p class="title">
+       Senior Scientist
+      </p>
+      <div class="contact-info">
+       <span>
+        Oakland, CA 94612
+       </span>
+       <a href="tel:510-610-8741">
+        510-610-8741
+       </a>
+       <a href="mailto:antonio.maffia01@gmail.com">
+        antonio.maffia01@gmail.com
+       </a>
+       <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">
+        LinkedIn
+       </a>
+      </div>
+      <div class="header-summary">
+       <blockquote class="summary-quote">
+        Innovative and results-driven Senior Scientist with 5+ years of expertise in molecular biology, functional genomics, and cell-based high-throughput screening. Demonstrated excellence in project leadership, experimental design, data analysis, and solving complex scalability challenges. Proven track record of driving breakthrough R&amp;D innovations through strategic cross-functional collaborations with biotech and pharmaceutical partners.
+       </blockquote>
+      </div>
+     </div>
+    </div>
+    <div class="header-qr">
+     <h3>
+      Download Resume
+     </h3>
+     <img alt="QR Code for Resume" class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&amp;data=https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf"/>
+     <p class="qr-description">
+      Scan to download PDF
      </p>
-     <div class="contact-info">
-      <span>
-       Oakland, CA 94612
-      </span>
-      <a href="tel:510-610-8741">
-       510-610-8741
-      </a>
-      <a href="mailto:antonio.maffia01@gmail.com">
-       antonio.maffia01@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">
-       LinkedIn
-      </a>
-     </div>
-     <!-- Professional Summary with Quotation Marks -->
-     <div class="header-summary">
-      <blockquote class="summary-quote">
-       Innovative and results-driven Senior Scientist with 5+ years of expertise in molecular biology, functional genomics, and cell-based high-throughput screening. Demonstrated excellence in project leadership, experimental design, data analysis, and solving complex scalability challenges. Proven track record of driving breakthrough R&amp;D innovations through strategic cross-functional collaborations with biotech and pharmaceutical partners.
-      </blockquote>
-     </div>
+     <a class="qr-link" href="https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf" target="_blank">
+      Download PDF
+     </a>
     </div>
    </div>
   </header>
@@ -957,18 +1041,6 @@ nav a:hover, nav a.active {
   </div>
   <!-- Navigation -->
   <!-- About Section -->
-  <div class="qr-section">
-   <h3>
-    Download Resume
-   </h3>
-   <img alt="QR Code for Resume" class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf"/>
-   <p style="font-size: 0.9rem; color: var(--gray); margin-bottom: 10px;">
-    Scan to download PDF
-   </p>
-   <a class="qr-link" href="Antonio_Maffia_Resume.pdf" target="_blank">
-    Download PDF Resume
-   </a>
-  </div>
   <!-- Experience Section -->
   <section id="experience">
    <div class="container">
