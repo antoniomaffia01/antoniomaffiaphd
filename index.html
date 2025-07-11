@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antonio Maffia, PhD - Senior Scientist</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,611 +13,464 @@
     }
 
     :root {
-      --primary-dark: #00000D;
-      --secondary-blue: #062F4F;
-      --accent-purple: #813772;
-      --accent-red: #B82601;
+      --primary-dark: #261C21;
+      --secondary-purple: #6E1E62;
+      --accent-magenta: #B0254F;
+      --accent-red: #DE4126;
+      --accent-orange: #EB9605;
       --white: #FFFFFF;
       --light-gray: #F8F9FA;
-      --gray: #6C757D;
+      --medium-gray: #E9ECEF;
+      --text-gray: #6C757D;
+      --dark-gray: #495057;
     }
 
     body {
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      color: var(--primary-dark);
+      color: var(--dark-gray);
       background-color: var(--white);
+      font-size: 16px;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+    /* Header with Color Blocks */
+    .header-wrapper {
+      position: relative;
+      background: var(--white);
     }
 
-    /* Header */
     header {
-      background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--accent-purple) 100%);
-      color: var(--white);
-      padding: 80px 0;
+      display: grid;
+      grid-template-columns: 70% 5% 5% 5% 15%;
+      min-height: 320px;
+    }
+
+    .header-content-area {
+      background: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+    }
+
+    .header-content {
       text-align: center;
+      max-width: 600px;
     }
 
     .header-content h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
       letter-spacing: -0.02em;
     }
 
     .header-content .title {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 300;
-      margin-bottom: 30px;
+      color: var(--white);
       opacity: 0.9;
+      margin-bottom: 24px;
     }
 
     .contact-info {
       display: flex;
       justify-content: center;
-      gap: 30px;
+      gap: 24px;
       flex-wrap: wrap;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
     }
 
+    .contact-info span,
     .contact-info a {
       color: var(--white);
       text-decoration: none;
-      transition: opacity 0.3s ease;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
     }
 
     .contact-info a:hover {
-      opacity: 0.8;
+      opacity: 1;
     }
 
-    /* Header Summary with Quotation Marks */
-    .header-summary {
-      margin-top: 40px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+    .header-block-purple { background: var(--secondary-purple); }
+    .header-block-magenta { background: var(--accent-magenta); }
+    .header-block-red { background: var(--accent-red); }
+    .header-block-orange { 
+      background: var(--accent-orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    .header-summary .summary-quote {
-      position: relative;
-      font-size: 1.2rem;
-      line-height: 1.7;
-      color: var(--white);
-      font-weight: 300;
-      font-style: normal;
-      font-family: 'Georgia', 'Times New Roman', serif;
-      margin: 0;
-      padding: 50px 60px 40px 60px;
-      letter-spacing: 0.5px;
-      text-align: center;
-      z-index: 2;
-      position: relative;
-      opacity: 0.95;
-    }
-
-    .header-summary .summary-quote::before {
-      content: '\201C';
-      position: absolute;
-      top: 0px;
-      left: 10px;
-      font-size: 8rem;
-      font-weight: 900;
-      color: var(--white);
-      opacity: 0.3;
-      line-height: 1;
-      font-family: 'Georgia', 'Times New Roman', serif;
-      z-index: 1;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .header-summary .summary-quote::after {
-      content: '\201D';
-      position: absolute;
-      bottom: -20px;
-      right: 10px;
-      font-size: 8rem;
-      font-weight: 900;
-      color: var(--white);
-      opacity: 0.3;
-      line-height: 1;
-      font-family: 'Georgia', 'Times New Roman', serif;
-      z-index: 1;
-      user-select: none;
-      pointer-events: none;
-    }
-    
-    /* Navigation */
-    nav {
+    /* Simplified QR Section */
+    .header-qr {
       background: var(--white);
-      padding: 20px 0;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .header-qr h3 {
+      color: var(--primary-dark);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .resume-button {
+      display: inline-block;
+      background: var(--primary-dark);
+      color: var(--white);
+      padding: 10px 24px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+    }
+
+    .resume-button:hover {
+      background: var(--accent-magenta);
+      transform: translateY(-1px);
+    }
+
+    /* Sticky Navigation */
+    .sticky-nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--medium-gray);
       position: sticky;
       top: 0;
       z-index: 100;
+      padding: 16px 0;
     }
 
-    nav .container {
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-name {
+      font-weight: 600;
+      color: var(--primary-dark);
+      font-size: 1.1rem;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav li {
-      display: inline-block;
+      gap: 32px;
     }
 
     nav a {
-      color: var(--secondary-blue);
+      color: var(--text-gray);
       text-decoration: none;
       font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      display: inline-block;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
     }
 
-    nav a:hover, nav a.active {
-      background: var(--accent-purple);
-      color: var(--white);
-      transform: translateY(-2px);
+    nav a:hover,
+    nav a.active {
+      color: var(--accent-magenta);
     }
 
-    /* Key Achievements Section */
-    .achievements-container {
-      max-width: 800px;
+    /* Main Content */
+    main {
+      max-width: 900px;
       margin: 0 auto;
-      text-align: center;
+      padding: 80px 24px;
+    }
+
+    section {
+      margin-bottom: 80px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 32px;
+      position: relative;
+      padding-bottom: 16px;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent-orange);
+    }
+
+    /* About Section */
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--dark-gray);
+      margin-bottom: 40px;
+    }
+
+    /* Core Expertise Section */
+   .about-text {
+     font-size: 1.1rem;
+     line-height: 1.8;
+     color: var(--dark-gray);
+     margin-bottom: 24px;
+   }
+
+   .about-text:first-of-type {
+     font-size: 1.25rem;
+     font-weight: 500;
+     color: var(--primary-dark);
+   }
+
+   .expertise-areas {
+     margin-top: 48px;
+     padding-top: 48px;
+     border-top: 1px solid var(--medium-gray);
+   }
+
+   .expertise-areas h3 {
+     font-size: 1.3rem;
+     color: var(--primary-dark);
+     margin-bottom: 24px;
+   }
+
+   .expertise-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     gap: 24px;
+   }
+
+   .expertise-item h4 {
+     color: var(--accent-magenta);
+     font-size: 1rem;
+     margin-bottom: 8px;
+   }
+
+   .expertise-item p {
+     color: var(--text-gray);
+     font-size: 0.95rem;
+     line-height: 1.5;
+   }
+
+
+    /* Key Achievements */
+    .achievements {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+       margin-top: 24px;  /* Add this line for spacing */
     }
 
     .achievement-item {
-      background: var(--white);
-      margin-bottom: 25px;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      border-left: 5px solid var(--accent-purple);
-      display: flex;
-      align-items: center;
-      text-align: left;
-      transition: transform 0.3s ease;
+      background: var(--light-gray);
+      padding: 24px;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-orange);
+      transition: transform 0.2s ease;
     }
 
     .achievement-item:hover {
-      transform: translateY(-5px);
+      transform: translateX(4px);
     }
 
-    .achievement-icon {
-      color: var(--accent-purple);
-      font-size: 1.2rem;
-      margin-right: 20px;
-      font-weight: bold;
-      flex-shrink: 0;
+    /* Experience Cards */
+    .experience-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    .achievement-item p {
-      margin: 0;
-      font-size: 1.1rem;
-      line-height: 1.6;
+    .experience-card {
+      background: var(--white);
+      border: 1px solid var(--medium-gray);
+      border-radius: 12px;
+      padding: 32px;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .experience-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .experience-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .experience-title {
+      font-size: 1.25rem;
+      font-weight: 600;
       color: var(--primary-dark);
     }
 
-    section:nth-child(even) {
-      background: var(--light-gray);
+    .experience-company {
+      font-size: 1rem;
+      color: var(--accent-magenta);
+      margin-top: 4px;
     }
 
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 50px;
-      color: var(--secondary-blue);
+    .experience-date {
+      font-size: 0.9rem;
+      color: var(--text-gray);
+      white-space: nowrap;
+    }
+
+    .experience-description {
+      color: var(--dark-gray);
+      line-height: 1.7;
+    }
+
+    .experience-description ul {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .experience-description li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+    }
+
+    .experience-description li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-orange);
+      font-weight: bold;
     }
 
     /* Skills Section */
-    .skills-grid {
+    .skills-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
     }
 
-    .skill-category {
-      background: var(--white);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    .skill-card {
+      background: var(--light-gray);
+      padding: 24px;
+      border-radius: 12px;
     }
 
-    .skill-category h3 {
-      color: var(--secondary-blue);
-      margin-bottom: 20px;
-      font-size: 1.3rem;
-      border-bottom: 2px solid var(--accent-purple);
-      padding-bottom: 10px;
+    .skill-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 16px;
     }
 
-    .skill-list {
+    .skill-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .skill-tag {
-      background: var(--light-gray);
-      color: var(--primary-dark);
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      border: 1px solid transparent;
-      transition: all 0.3s ease;
-    }
-
-    .skill-tag:hover {
-      border-color: var(--accent-purple);
-      background: var(--accent-purple);
-      color: var(--white);
+      background: var(--white);
+      color: var(--dark-gray);
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      border: 1px solid var(--medium-gray);
     }
 
     /* Publications */
-    .publication-item {
+    .publication-card {
       background: var(--white);
-      margin-bottom: 30px;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      border-left: 4px solid var(--accent-red);
+      border: 1px solid var(--medium-gray);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
     .publication-title {
       font-weight: 600;
-      color: var(--secondary-blue);
-      margin-bottom: 10px;
-    }
-
-    /* Google Scholar Link */
-    .scholar-link {
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .scholar-button {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--accent-purple) 100%);
-      color: var(--white);
-      padding: 15px 30px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
       font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    .scholar-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    .publication-authors {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .publication-authors strong {
+      color: var(--accent-magenta);
     }
 
     /* Footer */
     footer {
-      background: var(--primary-dark);
-      color: var(--white);
+      background: var(--light-gray);
+      padding: 40px 24px;
       text-align: center;
-      padding: 40px 0;
-    }
-
-    /* Timeline Styles */
-    .timeline-container {
-      background: var(--white);
-      padding: 60px 0;
-    }
-
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: auto;
-      padding-top: 20px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: linear-gradient(to bottom, 
-        var(--accent-purple) 0%, 
-        var(--accent-purple) 45%, 
-        #7e3f81 55%, 
-        #415d7a 65%, 
-        var(--secondary-blue) 100%);
-      transform: translateX(-50%);
-    }
-
-    .section-label {
-      background-color: var(--white);
-      color: var(--secondary-blue);
-      font-weight: 600;
-      text-align: center;
-      font-size: 1.2em;
-      padding: 8px 16px;
-      width: fit-content;
-      margin: 60px auto 40px;
-      z-index: 10;
-      position: relative;
-      border: 2px solid var(--accent-purple);
-      border-radius: 30px;
-    }
-
-    .entry {
-      position: relative;
-      width: 45%;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 40px 0;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .entry:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    }
-
-    .entry.experience {
-      background: #f4ecf7;
-      border-left: 4px solid var(--accent-purple);
-    }
-
-    .entry.education {
-      background: #e7f1fa;
-      border-left: 4px solid var(--secondary-blue);
-    }
-
-    .entry summary {
-      font-weight: 600;
-      color: var(--secondary-blue);
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      list-style: none;
-      position: relative;
-      padding-right: 25px;
-    }
-
-    .entry summary::after {
-      content: "▼";
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: transform 0.3s ease;
-      font-size: 0.8em;
-      color: var(--accent-purple);
-    }
-
-    .entry[open] summary::after {
-      transform: translateY(-50%) rotate(180deg);
-    }
-
-    .entry.experience summary::-webkit-details-marker {
-      color: var(--accent-purple);
-    }
-
-    .entry.education summary::-webkit-details-marker {
-      color: var(--secondary-blue);
-    }
-
-    .entry .date {
-      color: var(--accent-red);
-      font-weight: bold;
-      margin-bottom: 6px;
-      display: inline-block;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .entry p {
-      margin-top: 10px;
-      line-height: 1.6;
-      color: var(--primary-dark);
-    }
-
-    .entry.left {
-      left: 0;
-    }
-
-    .entry.right {
-      left: 55%;
-    }
-
-    .dot {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      background-color: var(--accent-purple);
-      border: 3px solid var(--white);
-      border-radius: 50%;
-      top: 25px;
-      z-index: 2;
-      box-shadow: 0 0 0 2px var(--accent-purple);
-    }
-
-    .entry.education .dot {
-      background-color: var(--secondary-blue);
-      box-shadow: 0 0 0 2px var(--secondary-blue);
-    }
-
-    .entry.left .dot {
-      right: -34px;
-    }
-
-    .entry.right .dot {
-      left: -34px;
-    }
-
-    /* Header QR layout */
-    .header-with-qr {
-      display: flex;
-      align-items: flex-start;
-      gap: 60px;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    .header-main {
-      flex: 1;
-      text-align: center;
-    }
-    .header-qr {
-      flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 25px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .header-qr h3 {
-      color: var(--white);
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-      font-weight: 500;
-    }
-    .header-qr .qr-code {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 15px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 10px;
-    }
-    .header-qr .qr-link {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.9);
-      color: var(--secondary-blue);
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: 500;
+      color: var(--text-gray);
       font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-    .header-qr .qr-link:hover {
-      background: var(--white);
-      transform: translateY(-2px);
-    }
-    .header-qr .qr-description {
-      font-size: 0.8rem;
-      color: var(--white);
-      opacity: 0.8;
-      margin-bottom: 15px;
     }
 
-    /* Responsive Design */
-    @media screen and (max-width: 768px) {
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 20px 20px 20px auto;
+      }
+
+      .header-content-area {
+        padding: 40px 24px;
+      }
+
       .header-content h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
       }
 
-      .contact-info {
+      .header-block-purple,
+      .header-block-magenta,
+      .header-block-red {
+        height: 20px;
+      }
+
+      .nav-container {
         flex-direction: column;
-        gap: 10px;
-      }
-
-      .header-summary .summary-quote {
-        font-size: 1.1rem;
-        padding: 40px 40px 30px 40px;
-        text-align: left;
-      }
-
-      .header-summary .summary-quote::before {
-        font-size: 6rem;
-        top: -5px;
-        left: 5px;
-      }
-
-      .header-summary .summary-quote::after {
-        font-size: 6rem;
-        bottom: -15px;
-        right: 5px;
+        gap: 16px;
       }
 
       nav ul {
-        flex-wrap: wrap;
-        gap: 15px;
-        padding: 0 20px;
-      }
-
-      nav a {
-        padding: 8px 15px;
+        gap: 16px;
         font-size: 0.9rem;
       }
 
-      .skills-grid {
-        grid-template-columns: 1fr;
+      main {
+        padding: 40px 20px;
       }
 
       section {
-        padding: 40px 0;
+        margin-bottom: 60px;
       }
 
-      .header-with-qr {
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .experience-header {
         flex-direction: column;
-        gap: 30px;
-        align-items: center;
-      }
-      .header-qr {
-        order: -1;
-        margin-bottom: 20px;
-      }
-      .header-qr .qr-code {
-        width: 100px;
-        height: 100px;
-      }
-
-      .achievements-container {
-        padding: 0 20px;
-      }
-
-      .achievement-item {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .achievement-icon {
-        margin-right: 0;
-        margin-bottom: 10px;
-      }
-
-      /* Timeline Responsive */
-      .entry,
-      .entry.left,
-      .entry.right {
-        width: 100%;
-        left: 0;
-      }
-      .timeline::before {
-        left: 20px;
-      }
-      .entry .dot {
-        left: -28px !important;
-        right: auto !important;
-      }
-      .section-title {
-        font-size: 2rem;
-        margin-bottom: 30px;
+        gap: 4px;
       }
     }
 
@@ -627,422 +479,408 @@
       scroll-behavior: smooth;
     }
 
-    /* Animations */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeIn 0.8s forwards;
-    }
+    /* Print styles */
+    @media print {
+      .sticky-nav,
+      .header-block-purple,
+      .header-block-magenta,
+      .header-block-red,
+      .header-block-orange {
+        display: none;
+      }
 
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      .header-content-area {
+        background: none;
+        color: var(--primary-dark);
+      }
+
+      .header-content h1,
+      .header-content .title,
+      .contact-info span,
+      .contact-info a {
+        color: var(--primary-dark);
       }
     }
   </style>
 </head>
 <body>
   <!-- Header -->
-  <header>
-    <div class="header-with-qr">
-      <div class="header-main">
+  <div class="header-wrapper">
+    <header>
+      <div class="header-content-area">
         <div class="header-content">
-          <h1>
-            Antonio Maffia, PhD
-          </h1>
-          <p class="title">
-            Senior Scientist
-          </p>
+          <h1>Antonio Maffia, PhD</h1>
+          <p class="title">Senior Scientist</p>
           <div class="contact-info">
-            <span>
-              Oakland, CA 94612
-            </span>
-            <a href="tel:510-610-8741">
-              510-610-8741
-            </a>
-            <a href="mailto:antonio.maffia01@gmail.com">
-              antonio.maffia01@gmail.com
-            </a>
-            <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">
-              LinkedIn
-            </a>
-          </div>
-          <div class="header-summary">
-            <blockquote class="summary-quote">
-              Innovative and results-driven Senior Scientist with 5+ years of expertise in molecular biology, functional genomics, and cell-based high-throughput screening. Demonstrated excellence in project leadership, experimental design, data analysis, and solving complex scalability challenges. Proven track record of driving breakthrough R&amp;D innovations through strategic cross-functional collaborations with biotech and pharmaceutical partners.
-            </blockquote>
+            <span>Oakland, CA 94612</span>
+            <a href="mailto:antonio.maffia01@gmail.com">antonio.maffia01@gmail.com</a>
+            <a href="https://www.linkedin.com/in/antoniomaffiaphd/" target="_blank">LinkedIn</a>
           </div>
         </div>
       </div>
-      <div class="header-qr">
-        <h3>
-          Download Resume
-        </h3>
-        <img alt="QR Code for Resume" class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&amp;data=https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf"/>
-        <p class="qr-description">
-          Scan to download PDF
-        </p>
-        <a class="qr-link" href="https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf" target="_blank">
-          Download PDF
-        </a>
-      </div>
-    </div>
-  </header>
-  
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <ul>
-        <li>
-          <a href="#achievements">
-            Achievements
-          </a>
-        </li>
-        <li>
-          <a href="#timeline">
-            Timeline
-          </a>
-        </li>
-        <li>
-          <a href="#skills">
-            Skills
-          </a>
-        </li>
-        <li>
-          <a href="#publications">
-            Publications
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  
-  <!-- Key Achievements Section -->
-  <section id="achievements" style="background: var(--light-gray); padding: 60px 0;">
-    <div class="container">
-      <h2 class="section-title">
-        Key Achievements
-      </h2>
-      <div class="achievements-container">
-        <div class="achievement-item">
-          <span class="achievement-icon">
-            ▶
-          </span>
-          <p>
-            Accelerated protein engineering throughput 1,000× by implementing pooled lentiviral CRISPR screening strategies
-          </p>
-        </div>
-        <div class="achievement-item">
-          <span class="achievement-icon">
-            ▶
-          </span>
-          <p>
-            Boosted cell-based drug screening capacity 100× through a scalable gene-editing pipeline and automated phenotypic assays
-          </p>
-        </div>
-        <div class="achievement-item">
-          <span class="achievement-icon">
-            ▶
-          </span>
-          <p>
-            Orchestrated cross-functional collaborations, streamlining project management and data-driven decision-making across R&amp;D teams and pharma partners
-          </p>
+      <div class="header-block-purple"></div>
+      <div class="header-block-magenta"></div>
+      <div class="header-block-red"></div>
+      <div class="header-block-orange">
+        <div class="header-qr">
+          <h3>Resume</h3>
+          <a href="https://github.com/antoniomaffia01/antoniomaffiaphd/raw/main/Antonio_Maffia_Resume.pdf" 
+             class="resume-button" 
+             target="_blank">Download PDF</a>
         </div>
       </div>
+    </header>
+  </div>
+
+  <!-- Sticky Navigation -->
+  <div class="sticky-nav">
+    <div class="nav-container">
+      <div class="nav-name">Antonio Maffia, PhD</div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#publications">Publications</a></li>
+        </ul>
+      </nav>
     </div>
-  </section>
-  
-  <!-- Experience & Education Timeline -->
-  <section id="timeline" class="timeline-container">
-    <div class="container">
-      <h2 class="section-title">Experience & Education Timeline</h2>
-      <div class="timeline">
+  </div>
 
-        <details class="entry left experience">
-          <div class="dot"></div>
-          <summary><span class="date">May 2023 – Nov 2024</span> · Senior Scientist I, Mammoth Biosciences</summary>
-          <p>At Mammoth Biosciences I built different lentiviral-based pooled screening workflows that supported protein engineering campaigns unlocking an exponential increase in screening capabilities. I managed the entire screening workflow taking charge of the experimental design, timelines management, cross-teams co-ordination and resource management. I have technically developed libraries cloning strategies and cell-based functional assays through targeted genetic engineering.</p>
-          <p>This experience has allowed me to gain more expertise in project management and leadership and has solidified my knowledge of protein engineering in the field of cell therapy.</p>
-        </details>
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section id="about">
+      <h2>About</h2>
+      <p class="about-text">
+    I'm a molecular biologist with over 10 years of experience building better ways to answer complex research questions. My expertise centers on developing high-throughput screening platforms, engineering cell lines, and creating functional assays that actually scale. I've taken projects from initial concept through implementation, increasing screening capacity by 100-1000× while maintaining data quality.
+  </p>
 
-        <details class="entry right experience">
-          <div class="dot"></div>
-          <summary><span class="date">Mar 2020 – May 2023</span> · Research Scientist, UC Berkeley</summary>
-          <p>My work at UC Berkeley produced a stem cells-based genetically engineered new platform for cancer drug testing. By complex genetic engineering of human stem cells this breakthrough work has provided a more efficient and time saving method to generate cancer models in vitro. This has unlocked the possibility to perform functional genomics studies to discover novel druggable targets as possible targets for cancer treatment.</p>
-          <p>Thanks to this work I have acquired a strong expertise in genetic editing in complex cell lines and functional genomics. I have had the luck to work with brilliant collaborators and have fortified my belief in cross-functional collaborations.</p>
-        </details>
+  <p class="about-text">
+    What drives me is turning ambitious experimental goals into practical, working systems. I design experiments that generate clear answers, coordinate teams to meet aggressive timelines, and translate findings into actionable next steps. Whether engineering CRISPR libraries, optimizing cell-based assays, or building automated workflows, I focus on delivering reproducible results that move projects forward.
+  </p>
 
-        <details class="entry left experience">
-          <div class="dot"></div>
-          <summary><span class="date">Oct 2018 – Feb 2020</span> · Research Scientist, Institute of Molecular Genetics</summary>
-          <p>At the Institute of Molecular Genetics in Pavia, I conducted independent research focused on DNA repair and cell cycle regulation. I engineered CRISPR-based cellular models and led high-throughput screening of chemical compounds targeting DNA-structure elements. My work contributed to identifying key modulators of genomic stability relevant to cancer therapy.</p>
-          <p>I also mentored students and colleagues, enhancing my collaborative and leadership capabilities while furthering my passion for mechanistic cancer research.</p>
-        </details>
-
-        <div class="section-label">Education</div>
-
-        <details class="entry right education">
-          <div class="dot"></div>
-          <summary><span class="date">2014 – 2017</span> · Ph.D. in Genetics and Molecular Biology, University of Pavia</summary>
-          <p>Doctoral work focused on the genetic and molecular mechanisms involved in DNA replication and repair, using cellular and biochemical approaches to investigate therapeutic targets in cancer models.</p>
-        </details>
-
-        <details class="entry left education">
-          <div class="dot"></div>
-          <summary><span class="date">2011 – 2013</span> · M.Sc. in Molecular Biology and Genetics, University of Pavia</summary>
-          <p>Developed high content imaging workflows and biochemical assays for the study of spatiotemporal dynamics of DNA repair proteins recruitment at the site of DNA damage. Graduated with highest honors.</p>
-        </details>
-
-        <details class="entry right education">
-          <div class="dot"></div>
-          <summary><span class="date">2008 – 2011</span> · B.Sc. in Biological Sciences, University of Pavia</summary>
-          <p>Built foundational knowledge in molecular biology, genetics, and biochemistry. Developed initial laboratory training and academic research experience.</p>
-        </details>
-
+  <p class="about-text">
+    I work best at the intersection of technical problem-solving and project leadership, bringing together the right people and technologies to tackle challenging therapeutic discovery programs. Always happy to connect and discuss interesting science. I'm passionate about solving tough technical challenges—whether it's troubleshooting an assay, scaling a platform, or tackling a new therapeutic target. If you're working on challenging problems in cell biology or screening, let's talk.
+      </p>
+      
+      <div class="expertise-areas">
+    <h3>Core Expertise</h3>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <h4>Functional Genomics</h4>
+        <p>Pooled CRISPR screening, synthetic lethality, genome-wide target discovery</p>
+      </div>
+      <div class="expertise-item">
+        <h4>Platform Development</h4>
+        <p>Scalable cell engineering, automated workflows, high-throughput phenotyping</p>
+      </div>
+      <div class="expertise-item">
+        <h4>Therapeutic Discovery</h4>
+        <p>Cell Therapy, Protein Engineering, Cancer models, Drug Target validation</p>
       </div>
     </div>
-  </section>
-  
-  <!-- Skills Section -->
-  <section id="skills">
-    <div class="container">
-      <h2 class="section-title">
-        Technical Skills
-      </h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h3>
-            Molecular &amp; Cellular Biology
-          </h3>
-          <div class="skill-list">
-            <span class="skill-tag">
-              Cell Line Engineering
-            </span>
-            <span class="skill-tag">
-              CRISPR/Cas9
-            </span>
-            <span class="skill-tag">
-              Lentiviral Libraries
-            </span>
-            <span class="skill-tag">
-              Flow Cytometry
-            </span>
-            <span class="skill-tag">
-              Cell Culture
-            </span>
-            <span class="skill-tag">
-              RNA-seq
-            </span>
-            <span class="skill-tag">
-              PCR/RT-PCR
-            </span>
-            <span class="skill-tag">
-              Immunofluorescence
-            </span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>
-            High-throughput Screening
-          </h3>
-          <div class="skill-list">
-            <span class="skill-tag">
-              Pooled CRISPR Screens
-            </span>
-            <span class="skill-tag">
-              Arrayed Screens
-            </span>
-            <span class="skill-tag">
-              NGS Analysis
-            </span>
-            <span class="skill-tag">
-              Platform Design
-            </span>
-            <span class="skill-tag">
-              Automation
-            </span>
-            <span class="skill-tag">
-              Phenotypic Analysis
-            </span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>
-            Biochemistry &amp; Instrumentation
-          </h3>
-          <div class="skill-list">
-            <span class="skill-tag">
-              Protein Purification
-            </span>
-            <span class="skill-tag">
-              Western Blot
-            </span>
-            <span class="skill-tag">
-              Tecan/Hamilton
-            </span>
-            <span class="skill-tag">
-              Opera Phenix
-            </span>
-            <span class="skill-tag">
-              Illumina Sequencing
-            </span>
-            <span class="skill-tag">
-              BD FACS
-            </span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>
-            Data Analysis &amp; Programming
-          </h3>
-          <div class="skill-list">
-            <span class="skill-tag">
-              Python
-            </span>
-            <span class="skill-tag">
-              R
-            </span>
-            <span class="skill-tag">
-              JMP
-            </span>
-            <span class="skill-tag">
-              GraphPad
-            </span>
-            <span class="skill-tag">
-              FlowJo
-            </span>
-            <span class="skill-tag">
-              ImageJ
-            </span>
-            <span class="skill-tag">
-              CRISPResso
-            </span>
-          </div>
-        </div>
-      </div>
+  </div>
+
+  <div class="achievements">
+    <div class="achievement-item">
+      <strong>1,000× acceleration</strong> in protein engineering throughput by implementing pooled lentiviral CRISPR screening strategies
     </div>
-  </section>
-  
-  <!-- Publications Section -->
-  <section id="publications">
-    <div class="container">
-      <h2 class="section-title">
-        Selected Publications
-      </h2>
-      <div class="publication-item">
+    <div class="achievement-item">
+      <strong>100× boost</strong> in cell-based drug screening capacity through scalable gene-editing pipeline and automated phenotypic assays
+    </div>
+    <div class="achievement-item">
+      <strong>Cross-functional leadership</strong> orchestrating collaborations across R&D teams and pharmaceutical partners
+    </div>
+  </div>
+</section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="experience-grid">
+        
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Senior Scientist I</div>
+              <div class="experience-company">Mammoth Biosciences • Brisbane, CA</div>
+            </div>
+            <div class="experience-date">May 2023 – Nov 2024</div>
+          </div>
+          <div class="experience-description">
+            <p>Built different lentiviral-based pooled screening workflows that supported protein engineering campaigns, unlocking an exponential increase in screening capabilities.</p>
+            <ul>
+              <li>Designed and implemented high-throughput pooled lentiviral CRISPR screens, accelerating workflows 1,000×</li>
+              <li>Developed combinatorial lentiviral library pipelines achieving >80% accuracy in library representation</li>
+              <li>Scaled mRNA nucleofection workflows 4×, increasing reproducibility of epigenetic effector assays</li>
+              <li>Led project coordination across 6 cross-functional teams, reducing decision timelines by 30%</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Research Scientist</div>
+              <div class="experience-company">UC Berkeley • Berkeley, CA</div>
+            </div>
+            <div class="experience-date">Mar 2020 – May 2023</div>
+          </div>
+          <div class="experience-description">
+            <p>Produced a stem cells-based genetically engineered platform for cancer drug testing through complex genetic engineering of human stem cells.</p>
+            <ul>
+              <li>Engineered novel hESC-derived cancer models for synthetic lethality screening with GSK</li>
+              <li>Co-developed scalable platform generating 100-200× more knockout cell lines for phenotypic profiling</li>
+              <li>Created embryonic stem cell model with 10,000× increase in immortalization efficiency</li>
+              <li>Co-first author on Nature Communications publication on telomere-related therapeutic discovery</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Research Scientist</div>
+              <div class="experience-company">Institute of Molecular Genetics • Pavia, Italy</div>
+            </div>
+            <div class="experience-date">Oct 2018 – Feb 2020</div>
+          </div>
+          <div class="experience-description">
+            <p>Conducted independent research focused on DNA repair and cell cycle regulation.</p>
+            <ul>
+              <li>Engineered 2 CRISPR/HDR cell lines for therapeutic target discovery</li>
+              <li>Led high-throughput screening of chemical compounds targeting DNA-structure elements</li>
+              <li>Mentored 2 graduate students and 5+ colleagues in experimental design and data analysis</li>
+              <li>Published findings in top peer-reviewed journals advancing genomic stability mechanisms</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <h2>Education</h2>
+      <div class="experience-grid">
+        
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Ph.D. in Genetics and Molecular Biology</div>
+              <div class="experience-company">University of Pavia • Pavia, Italy</div>
+            </div>
+            <div class="experience-date">2014 – 2017</div>
+          </div>
+          <div class="experience-description">
+            Doctoral work focused on genetic and molecular mechanisms in DNA replication and repair, 
+            using cellular and biochemical approaches to investigate therapeutic targets in cancer models.
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">M.Sc. in Molecular Biology and Genetics</div>
+              <div class="experience-company">University of Pavia • Pavia, Italy</div>
+            </div>
+            <div class="experience-date">2011 – 2013</div>
+          </div>
+          <div class="experience-description">
+            Developed high content imaging workflows and biochemical assays for spatiotemporal dynamics 
+            of DNA repair proteins. Graduated with highest honors.
+          </div>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">B.Sc. in Biological Sciences</div>
+              <div class="experience-company">University of Pavia • Pavia, Italy</div>
+            </div>
+            <div class="experience-date">2008 – 2011</div>
+          </div>
+          <div class="experience-description">
+            Built foundational knowledge in molecular biology, genetics, and biochemistry with 
+            initial laboratory training and academic research experience.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        
+        <div class="skill-card">
+          <h3>Molecular & Cellular Biology</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Cell Line Engineering</span>
+            <span class="skill-tag">CRISPR/Cas9</span>
+            <span class="skill-tag">Lentiviral Libraries</span>
+            <span class="skill-tag">Flow Cytometry</span>
+            <span class="skill-tag">Cell Culture</span>
+            <span class="skill-tag">RNA-seq</span>
+            <span class="skill-tag">PCR/RT-PCR</span>
+            <span class="skill-tag">Immunofluorescence</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>High-throughput Screening</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Pooled CRISPR Screens</span>
+            <span class="skill-tag">Arrayed Screens</span>
+            <span class="skill-tag">NGS Analysis</span>
+            <span class="skill-tag">Platform Design</span>
+            <span class="skill-tag">Automation</span>
+            <span class="skill-tag">Phenotypic Analysis</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Instrumentation</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Tecan/Hamilton</span>
+            <span class="skill-tag">Opera Phenix</span>
+            <span class="skill-tag">BD FACS</span>
+            <span class="skill-tag">Illumina Sequencing</span>
+            <span class="skill-tag">ZAG DNA Analyzer</span>
+            <span class="skill-tag">KingFisher</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Data Analysis</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">JMP</span>
+            <span class="skill-tag">GraphPad</span>
+            <span class="skill-tag">FlowJo</span>
+            <span class="skill-tag">ImageJ</span>
+            <span class="skill-tag">CRISPResso</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Project Management</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Cross-functional Leadership</span>
+            <span class="skill-tag">Strategic Planning</span>
+            <span class="skill-tag">Risk Management</span>
+            <span class="skill-tag">Team Coordination</span>
+            <span class="skill-tag">Decision Making</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Communication</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Scientific Writing</span>
+            <span class="skill-tag">Data Visualization</span>
+            <span class="skill-tag">Presentations</span>
+            <span class="skill-tag">Mentoring</span>
+            <span class="skill-tag">Collaboration</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications">
+      <h2>Selected Publications</h2>
+      
+      <div class="publication-card">
         <div class="publication-title">
           A non-genetic switch triggers alternative telomere lengthening and cellular immortalization in ATRX deficient cells
         </div>
-        <p>
-          <strong>
-            Turkalo K. T.*, Maffia, A*.
-          </strong>
-          , Regalado, G. S., Blanchette, M., Spierings, C. J., Lansdorp, P. M., Hockemeyer, D. (2023).
-          <em>
-            Nature Communications, 14(1)
-          </em>
-          . *Authors have equally contributed to the work.
-        </p>
+        <div class="publication-authors">
+          Turkalo K. T.*, <strong>Maffia, A*.</strong>, Regalado, G. S., Blanchette, M., Spierings, C. J., Lansdorp, P. M., Hockemeyer, D. (2023). 
+          <em>Nature Communications, 14(1)</em>. *Equal contribution
+        </div>
       </div>
-      <div class="publication-item">
+
+      <div class="publication-card">
         <div class="publication-title">
           From R-Loops to G-Quadruplexes: Emerging New Threats for the Replication Fork
         </div>
-        <p>
-          <strong>
-            Maffia, A
-          </strong>
-          ., Ranise, C., &amp; Sabbioneda, S. (2020).
-          <em>
-            International Journal of Molecular Sciences. 21 (4)
-          </em>
-          .
-        </p>
+        <div class="publication-authors">
+          <strong>Maffia, A</strong>., Ranise, C., & Sabbioneda, S. (2020). 
+          <em>International Journal of Molecular Sciences, 21(4)</em>
+        </div>
       </div>
-      <div class="publication-item">
+
+      <div class="publication-card">
         <div class="publication-title">
           UBR5 interacts with the replication fork and protects DNA replication from DNA polymerase η toxicity
         </div>
-        <p>
-          Cipolla, L., Bertoletti, F.,
-          <strong>
-            Maffia, A
-          </strong>
-          ., Liang, C. C., Lehmann, A. R., Cohn, M. A., Sabbioneda, S. (2019).
-          <em>
-            Nucleic acids research, 47 (21)
-          </em>
-          .
-        </p>
+        <div class="publication-authors">
+          Cipolla, L., Bertoletti, F., <strong>Maffia, A</strong>., Liang, C. C., Lehmann, A. R., Cohn, M. A., Sabbioneda, S. (2019). 
+          <em>Nucleic acids research, 47(21)</em>
+        </div>
       </div>
-      <div class="scholar-link">
-        <a class="scholar-button" href="https://scholar.google.com/citations?user=UMwLySkAAAAJ&amp;hl=en&amp;oi=ao" target="_blank">
-          View Complete Publication List on Google Scholar
+
+      <div style="text-align: center; margin-top: 32px;">
+        <a href="https://scholar.google.com/citations?user=UMwLySkAAAAJ&hl=en&oi=ao" 
+           target="_blank" 
+           class="resume-button">
+          View All Publications on Google Scholar
         </a>
       </div>
-    </div>
-  </section>
-  
+    </section>
+  </main>
+
   <!-- Footer -->
   <footer>
-    <div class="container">
-      <p>
-        © 2025 Antonio Maffia, PhD. All rights reserved.
-      </p>
-    </div>
+    <p>© 2025 Antonio Maffia, PhD. All rights reserved.</p>
   </footer>
-  
+
   <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-
     // Active navigation highlighting
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('nav a');
+
     window.addEventListener('scroll', () => {
-        const sections = document.querySelectorAll('section');
-        let current = '';
-        let scrollY = window.scrollY;
+      let current = '';
+      const scrollY = window.scrollY;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            if (scrollY >= sectionTop - 150 && scrollY < sectionTop + sectionHeight - 150) {
-                current = section.getAttribute('id');
-            }
-        });
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollY >= sectionTop - 100 && scrollY < sectionTop + sectionHeight - 100) {
+          current = section.getAttribute('id');
+        }
+      });
 
-        document.querySelectorAll('nav a').forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
     });
-    
-    // Timeline entry animations
-    document.addEventListener('DOMContentLoaded', function() {
-      const entries = document.querySelectorAll('.entry');
-      
-      entries.forEach((entry, index) => {
-        // Add slight delay for staggered animation
-        setTimeout(() => {
-          entry.style.opacity = 0;
-          entry.style.transform = 'translateY(20px)';
-          entry.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-          
-          setTimeout(() => {
-            entry.style.opacity = 1;
-            entry.style.transform = 'translateY(0)';
-          }, 100);
-        }, index * 100);
+
+    // Smooth scroll behavior for navigation links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+          const offsetTop = targetSection.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
       });
     });
   </script>
