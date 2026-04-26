@@ -46,16 +46,50 @@
     }
 
     .header-content-area {
-      background: var(--primary-dark);
+      background: #0a0608;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Helix canvas as background of left header area */
+    #helix-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
     }
 
     .header-content {
       text-align: center;
       max-width: 600px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Dark vignette behind header text for readability */
+    .header-content-area::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(10,6,8,0.65) 0%,
+        rgba(10,6,8,0.4) 35%,
+        rgba(10,6,8,0.15) 65%,
+        rgba(10,6,8,0) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
     }
 
     .header-content h1 {
@@ -64,16 +98,18 @@
       color: var(--white);
       margin-bottom: 8px;
       letter-spacing: -0.02em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7);
     }
 
     .header-content .title {
-      font-size: 1.5rem;        /* Increased from 1.25rem */
-      font-weight: 400;         /* Increased from 300 for better visibility */
+      font-size: 1.5rem;
+      font-weight: 400;
       color: var(--white);
       opacity: 1;
       margin-bottom: 32px;
-      letter-spacing: 0.5px;    /* Added for better spacing */
+      letter-spacing: 0.5px;
       margin-top: 12px;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.9), 0 0 30px rgba(0,0,0,0.6);
     }
 
     .contact-info {
@@ -88,8 +124,9 @@
     .contact-info a {
       color: var(--white);
       text-decoration: none;
-      opacity: 0.85;
+      opacity: 0.95;
       transition: opacity 0.2s ease;
+      text-shadow: 0 1px 10px rgba(0,0,0,0.9);
     }
 
     .contact-info a:hover {
@@ -487,7 +524,12 @@
       .header-block-purple,
       .header-block-magenta,
       .header-block-red,
-      .header-block-orange {
+      .header-block-orange,
+      #helix-canvas {
+        display: none;
+      }
+
+      .header-content-area::after {
         display: none;
       }
 
@@ -501,6 +543,7 @@
       .contact-info span,
       .contact-info a {
         color: var(--primary-dark);
+        text-shadow: none;
       }
     }
   </style>
@@ -510,6 +553,7 @@
   <div class="header-wrapper">
     <header>
       <div class="header-content-area">
+        <canvas id="helix-canvas"></canvas>
         <div class="header-content">
           <h1>Antonio Maffia, PhD</h1>
           <p class="title">Therapeutic Discovery | Genetic Engineering | Screening Technologies</p>
@@ -842,6 +886,222 @@
   <footer>
     <p>© 2025 Antonio Maffia, PhD. All rights reserved.</p>
   </footer>
+
+  <script>
+    // ============================================
+    // ANIMATED DNA HELIX - HEADER BACKGROUND
+    // ============================================
+    (function(){
+      const cv=document.getElementById('helix-canvas');
+      if(!cv)return;
+      const ctx=cv.getContext('2d');
+      const dpr=window.devicePixelRatio||1;
+      let W,H;
+
+      function resize(){
+        const r=cv.parentElement.getBoundingClientRect();
+        cv.width=r.width*dpr;
+        cv.height=r.height*dpr;
+        cv.style.width=r.width+'px';
+        cv.style.height=r.height+'px';
+        W=cv.width;H=cv.height;
+        rebuild();
+      }
+
+      const COL={A:'#EB9605',T:'#DE4126',G:'#6E1E62',C:'#B0254F'};
+      const B=['A','T','G','C'];
+      function rng(s){return()=>{s=(s*16807)%2147483647;return s/2147483647}}
+      function lerp(a,b,t){return a+(b-a)*t}
+      function clamp(v,l,h){return Math.max(l,Math.min(h,v))}
+      function ss(a,b,x){const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)}
+
+      const angle=-12*Math.PI/180;
+      let cosA,sinA,cellW,cellH,cols,rows,amplitude,tubeRadius,freq;
+      const STRAND_PHASE=[0,Math.PI*0.8];
+      let mainLetters=[],gapLetters=[],bgAlphas=[];
+      let mainFlipRate=[],mainTimer=[],mainFlash=[];
+      let gapFlipRate=[],gapTimer=[],gapFlash=[];
+      let gridHX=[],gridHY=[];
+
+      function rebuild(){
+        cosA=Math.cos(angle);sinA=Math.sin(angle);
+        // Cell size scales with DPR for retina sharpness
+        // Match original banner ratio: 20px cell on 3168px canvas = 1/158 of width
+        cellW=Math.max(8,Math.round(W/158));
+        cellH=cellW;
+        cols=Math.ceil(W/cellW)+2;
+        rows=Math.ceil(H/cellH)+2;
+        // Helix amplitude based on height, frequency based on width
+        // Original: 3168x792 (4:1) with 2.5 twists -> 1 twist per ~1267px
+        // So freq should adapt to current width
+        amplitude=H*0.30;
+        tubeRadius=H*0.19;
+        // Adapt frequency so we get a reasonable number of twists for the width
+        // Aim for 1 full twist per ~700px for nice visual density
+        const twists=Math.max(1.5,W/(700*dpr));
+        freq=twists*Math.PI*2/1.3; // factor of 1.3 matches original t-mapping
+
+        mainLetters=[];gapLetters=[];bgAlphas=[];
+        mainFlipRate=[];mainTimer=[];mainFlash=[];
+        gapFlipRate=[];gapTimer=[];gapFlash=[];
+        gridHX=[];gridHY=[];
+        const r1=rng(42),r2=rng(314);
+        for(let row=0;row<rows;row++){
+        for(let col=0;col<cols;col++){
+          mainLetters.push(B[Math.floor(r1()*4)]);
+          bgAlphas.push(0.018+r1()*0.018);
+          gapLetters.push(B[Math.floor(r2()*4)]);
+          mainFlipRate.push(8+Math.floor(r1()*25));
+          mainTimer.push(Math.floor(r1()*12));
+          mainFlash.push(0);
+          gapFlipRate.push(12+Math.floor(r2()*30));
+          gapTimer.push(Math.floor(r2()*15));
+          gapFlash.push(0);
+          const gx=col*cellW+cellW/2,gy=row*cellH+cellH/2;
+          const dx=gx-W*0.5,dy=gy-H*0.5;
+          gridHX.push(dx*cosA+dy*sinA);
+          gridHY.push(-dx*sinA+dy*cosA);
+        }}
+      }
+
+      let animPhase=0,paused=false,lastTime=0;
+      const SPEED=0.0004;
+      cv.addEventListener('mouseenter',()=>{paused=true});
+      cv.addEventListener('mouseleave',()=>{paused=false});
+
+      function draw(timestamp){
+        if(!lastTime)lastTime=timestamp;
+        const dt=timestamp-lastTime;
+        lastTime=timestamp;
+        if(!paused)animPhase+=SPEED*dt;
+
+        if(!paused){
+          for(let i=0;i<mainLetters.length;i++){
+            mainTimer[i]++;
+            if(mainTimer[i]>=mainFlipRate[i]){
+              const nb=B[Math.floor(Math.random()*4)];
+              if(nb!==mainLetters[i]&&Math.random()<0.25)mainFlash[i]=5;
+              mainLetters[i]=nb;mainTimer[i]=0;
+            }
+            if(mainFlash[i]>0)mainFlash[i]--;
+            gapTimer[i]++;
+            if(gapTimer[i]>=gapFlipRate[i]){
+              const nb=B[Math.floor(Math.random()*4)];
+              if(nb!==gapLetters[i]&&Math.random()<0.25)gapFlash[i]=5;
+              gapLetters[i]=nb;gapTimer[i]=0;
+            }
+            if(gapFlash[i]>0)gapFlash[i]--;
+          }
+        }
+
+        ctx.fillStyle='#0a0608';ctx.fillRect(0,0,W,H);
+
+        const total=rows*cols;
+        for(let i=0;i<total;i++){
+          const col=i%cols,gx=col*cellW+cellW/2;
+          const gy=Math.floor(i/cols)*cellH+cellH/2;
+          const hx=gridHX[i],hy=gridHY[i];
+          const t=(hx+W*0.65)/(W*1.3);
+          let maxInfluence=0,bestZ=0,totalInfluence=0,weightedZ=0;
+          for(let strand=0;strand<2;strand++){
+            const ph=STRAND_PHASE[strand]+animPhase;
+            const strandY=Math.sin(t*freq+ph)*amplitude;
+            const strandZ=Math.cos(t*freq+ph);
+            const dist=Math.abs(hy-strandY);
+            if(dist<tubeRadius){
+              const normDist=dist/tubeRadius;
+              const influence=Math.pow(1-normDist,1.2);
+              totalInfluence+=influence;weightedZ+=strandZ*influence;
+              if(influence>maxInfluence)maxInfluence=influence;
+            }
+          }
+          if(totalInfluence>0)bestZ=weightedZ/totalInfluence;
+
+          const base=mainLetters[i];
+          const depth01=(bestZ+1)/2;
+          const ef=ss(0,W*0.08,gx)*ss(0,W*0.08,W-gx);
+          const vignette=ss(0,H*0.06,gy)*ss(0,H*0.06,H-gy);
+          const totalFade=ef*vignette;
+
+          if(maxInfluence>0.03){
+            const depthCurve=0.3+0.7*Math.pow(depth01,0.7);
+            const brightness=maxInfluence*depthCurve;
+            const size=lerp(cellW*0.4,cellW*1.2,clamp(brightness*1.1,0,1));
+            const alpha=clamp(brightness*1.05,0.06,0.95)*totalFade;
+            ctx.save();ctx.globalAlpha=alpha;
+            if(mainFlash[i]>0){
+              ctx.fillStyle='#ffffff';
+              ctx.shadowColor='#ffffff';ctx.shadowBlur=size*0.8;
+            }else{
+              if(brightness>0.45&&size>cellW*0.7){ctx.shadowColor=COL[base];ctx.shadowBlur=size*0.5}else ctx.shadowBlur=0;
+              ctx.fillStyle=COL[base];
+            }
+            const w=brightness>0.55?'700':brightness>0.25?'500':'300';
+            ctx.font=w+' '+Math.round(size)+'px "Inter","Helvetica Neue",sans-serif';
+            ctx.textAlign='center';ctx.textBaseline='middle';
+            ctx.fillText(base,gx,gy);ctx.restore();
+          }else{
+            ctx.save();ctx.globalAlpha=bgAlphas[i]*totalFade;
+            ctx.font='300 '+Math.round(cellW*0.35)+'px "Inter","Helvetica Neue",sans-serif';
+            ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle=COL[base];
+            ctx.fillText(base,gx,gy);ctx.restore();
+          }
+        }
+
+        // Gap sequence letters
+        for(let i=0;i<total;i++){
+          const col=i%cols,gx=col*cellW+cellW/2;
+          const gy=Math.floor(i/cols)*cellH+cellH/2;
+          const hy=gridHY[i],hx=gridHX[i];
+          const t2=(hx+W*0.65)/(W*1.3);
+          const s0Y=Math.sin(t2*freq+STRAND_PHASE[0]+animPhase)*amplitude;
+          const s0Z=Math.cos(t2*freq+STRAND_PHASE[0]+animPhase);
+          const s1Y=Math.sin(t2*freq+STRAND_PHASE[1]+animPhase)*amplitude;
+          const s1Z=Math.cos(t2*freq+STRAND_PHASE[1]+animPhase);
+          const minY=Math.min(s0Y,s1Y),maxY=Math.max(s0Y,s1Y);
+          const gapSize=maxY-minY;
+          const inset=tubeRadius*0.7;
+          const innerMin=minY+inset,innerMax=maxY-inset;
+          if(innerMax<=innerMin)continue;
+          if(hy<innerMin||hy>innerMax)continue;
+          let onStrand=false;
+          for(let strand=0;strand<2;strand++){
+            const sY=Math.sin(t2*freq+STRAND_PHASE[strand]+animPhase)*amplitude;
+            if(Math.abs(hy-sY)<tubeRadius*0.85){onStrand=true;break}
+          }
+          if(onStrand)continue;
+          const blendT=(hy-s0Y)/(s1Y-s0Y);
+          const iz=lerp(s0Z,s1Z,clamp(blendT,0,1));
+          const depth01=(iz+1)/2;
+          const mid=(minY+maxY)/2;
+          const centeredness=1-2*Math.abs((hy-mid)/(gapSize/2));
+          const centerFade=Math.pow(clamp(centeredness,0,1),0.6);
+          const ef2=ss(0,W*0.08,gx)*ss(0,W*0.08,W-gx);
+          const vignette2=ss(0,H*0.06,gy)*ss(0,H*0.06,H-gy);
+          if(ef2<0.01)continue;
+          const base2=gapLetters[i];
+          const alpha2=lerp(0.12,0.42,depth01)*ef2*vignette2*lerp(0.5,1.0,centerFade);
+          const size2=lerp(cellW*0.4,cellW*0.7,depth01);
+          if(alpha2<0.01)continue;
+          ctx.save();ctx.globalAlpha=alpha2;
+          ctx.font='300 '+Math.round(size2)+'px "Inter","Helvetica Neue",sans-serif';
+          ctx.textAlign='center';ctx.textBaseline='middle';
+          if(gapFlash[i]>0){
+            ctx.fillStyle='#ffffff';ctx.shadowColor='#ffffff';ctx.shadowBlur=size2*0.6;
+          }else{
+            ctx.fillStyle=COL[base2];
+          }
+          ctx.fillText(base2,gx,gy);ctx.restore();
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      window.addEventListener('resize',resize);
+      requestAnimationFrame(draw);
+    })();
+  </script>
 
   <script>
     // Active navigation highlighting
